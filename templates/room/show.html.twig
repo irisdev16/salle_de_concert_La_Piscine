@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block metatitle %}
+    Salle modifiée | Super Blog
+{% endblock metatitle %}
+
+{% block main %}
+
+    <section class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <article>
+                <h2> {{ room.name }}</h2>
+                <h2> Capacité : {{ room.capacity }} personnes</h2>
+            </article>
+        </div>
+
+
+        <a href="{{ path('room_update', {id:room.id}) }}" class="btn btn-primary">Modifier</a>
+    </section>
+
+
+{% endblock main %}

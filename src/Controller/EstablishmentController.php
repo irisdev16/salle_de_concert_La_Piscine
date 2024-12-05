@@ -47,6 +47,16 @@ class EstablishmentController extends AbstractController
 
     }
 
+    #[Route ('establishment/{id}', name: 'establishment_show')]
+    public function show(int $id, EstablishmentRepository $establishmentRepository): Response{
+
+        $establishment = $establishmentRepository->find($id);
+
+        return $this->render('establishment/show.html.twig',[
+            'establishment' => $establishment,
+        ]);
+    }
+
 
     #[Route('/establishment/update/{id}', 'establishment_update', ['id'=> '\d+'] )]
     public function update(int $id,EstablishmentRepository $establishmentRepository, Request $request, EntityManagerInterface $entityManager): Response{

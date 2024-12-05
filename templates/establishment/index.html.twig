@@ -14,7 +14,7 @@
         <div class="row">
             {% for establishment in establishments %}
                 <div class="col-md-6 col-lg-4 mb-4">
-                    <a href="{{ path('establishment_update', {id:establishment.id}) }}">
+                    <a href="{{ path('establishment_show', {id:establishment.id}) }}">
                         <div class="card shadow-sm h-100">
                             <div class="card-body">
                                 <h5 class="card-title">{{ establishment.name }}</h5>

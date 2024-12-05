@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Establishment;
 use App\Entity\Room;
 use Doctrine\DBAL\Types\IntegerType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,6 +28,16 @@ class RoomType extends AbstractType
                 'label_attr' => ['class' => 'form-label'],
                 'label' => "Capacité"
             ])
+
+            ->add('establishment', EntityType::class, [
+                'class' => Establishment::class,
+                'choice_label' => 'name',
+                'placeholder' => 'Choisissez un établissement',
+                'attr'=> ['class' => 'form-control'],
+                'label_attr' => ['class' => 'form-label'],
+                'label' => 'Etablissement',
+            ])
+
             ->add('Enregistrer', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success mt-3']
             ])

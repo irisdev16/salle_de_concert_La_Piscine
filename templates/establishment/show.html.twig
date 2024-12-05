@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block metatitle %}
+    Établissement modifié | Super Blog
+{% endblock metatitle %}
+
+{% block main %}
+
+    <section class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <article>
+               <h2> {{ establishment.name }}</h2>
+               <h2> Adresse : {{ establishment.adress }}</h2>
+               <h2> {{ establishment.description }}</h2>
+            </article>
+        </div>
+
+
+        <a href="{{ path('establishment_update', {id:establishment.id}) }}" class="btn btn-primary">Modifier</a>
+    </section>
+
+
+{% endblock main %}

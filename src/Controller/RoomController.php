@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Room;
 use App\Form\RoomType;
+use App\Repository\EstablishmentRepository;
 use App\Repository\RoomRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,6 +41,16 @@ class RoomController extends AbstractController
 
         return $this->render('room/create.html.twig', [
             'formView' => $form->createView(),
+        ]);
+    }
+
+    #[\Symfony\Component\Routing\Annotation\Route ('room/{id}', name: 'room_show')]
+    public function show(int $id, RoomRepository $roomRepository ): Response{
+
+        $room = $roomRepository->find($id);
+
+        return $this->render('room/show.html.twig',[
+            'room' => $room
         ]);
     }
 

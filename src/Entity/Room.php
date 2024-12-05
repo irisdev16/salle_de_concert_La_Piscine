@@ -19,6 +19,9 @@ class Room
     #[ORM\Column]
     private ?int $capacity = null;
 
+    #[ORM\ManyToOne (targetEntity: Establishment::class)]
+    private ?Establishment $establishment = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,15 @@ class Room
     {
         $this->capacity = $capacity;
 
+        return $this;
+    }
+
+    public function getEstablishment(): ?Establishment{
+        return $this->establishment;
+    }
+
+    public function setEstablishment(?Establishment $establishment): static{
+        $this->establishment = $establishment;
         return $this;
     }
 }

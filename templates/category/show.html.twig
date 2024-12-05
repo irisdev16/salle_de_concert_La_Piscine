@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block metatitle %}
+    Catégorie modifiée | Super Blog
+{% endblock metatitle %}
+
+{% block main %}
+
+    <section class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <article>
+                <h2> {{ category.name }}</h2>
+                <h2> {{ category.description }}</h2>
+            </article>
+        </div>
+
+
+        <a href="{{ path('category_update', {id:category.id}) }}" class="btn btn-primary">Modifier</a>
+    </section>
+
+
+{% endblock main %}
