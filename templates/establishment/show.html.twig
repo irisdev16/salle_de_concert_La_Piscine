@@ -16,6 +16,10 @@
             </article>
         </div>
 
+        {% for room in establishment.rooms %}
+            <h2> {{ room.name }}</h2>
+        {% endfor %}
+
 
         <a href="{{ path('establishment_update', {id:establishment.id}) }}" class="btn btn-primary">Modifier</a>
     </section>

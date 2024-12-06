@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\RoomRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
@@ -19,8 +20,16 @@ class Room
     #[ORM\Column]
     private ?int $capacity = null;
 
-    #[ORM\ManyToOne (targetEntity: Establishment::class)]
+    #[ORM\ManyToOne (targetEntity: Establishment::class, inversedBy: "rooms")]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'cascade')]
     private ?Establishment $establishment = null;
+
+    #[ORM\OneToMany(mappedBy: 'room',targetEntity: Event::class)]
+    private Collection $events;
+
+    #[ORM\ManyToMany(targetEntity: Tag::class)]
+    #[ORM\JoinTable(name: 'room_tag')]
+    private Collection $tags;
 
     public function getId(): ?int
     {
@@ -57,6 +66,24 @@ class Room
 
     public function setEstablishment(?Establishment $establishment): static{
         $this->establishment = $establishment;
+        return $this;
+    }
+
+    public function getEvents(): Collection{
+        return $this->events;
+    }
+
+    public function setEvent(?Event $event): static{
+        $this->events = $event;
+        return $this;
+    }
+
+    public function getTags(): Collection{
+        return $this->tags;
+    }
+
+    public function setTags(?Tag $tags): static{
+        $this->tags = $tags;
         return $this;
     }
 }

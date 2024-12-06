@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Establishment;
 use App\Entity\Room;
+use App\Entity\Tag;
 use Doctrine\DBAL\Types\IntegerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -36,6 +37,15 @@ class RoomType extends AbstractType
                 'attr'=> ['class' => 'form-control'],
                 'label_attr' => ['class' => 'form-label'],
                 'label' => 'Etablissement',
+            ])
+
+            ->add('tags', EntityType::class, [
+                'class' => Tag::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'attr' => ['class' => 'form-select'],
+                'label' => 'Tags',
+                'label_attr' => ['class' => 'form-label'],
             ])
 
             ->add('Enregistrer', SubmitType::class, [

@@ -41,8 +41,9 @@ class EstablishmentController extends AbstractController
             return $this->redirectToRoute('establishments');
         }
 
+        $formView = $form->createView();
         return $this->render('establishment/create.html.twig',[
-            'formView' => $form->createView(),
+            'formView' => $formView
         ]);
 
     }
@@ -73,6 +74,8 @@ class EstablishmentController extends AbstractController
         if($form->isSubmitted()){
             $entityManager->persist($establishmentUpdated);
             $entityManager->flush();
+
+            return $this->redirectToRoute('establishments');
         }
 
         $form_view = $form->createView();

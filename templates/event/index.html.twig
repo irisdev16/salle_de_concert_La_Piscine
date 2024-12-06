@@ -1,23 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TagController!{% endblock %}
+{% block title %}Hello EstablishmentController!{% endblock %}
 
 {% block main %}
 
 
     <section class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3>Il y a {{ tags | length }} tags actuellement</h3>
-            <a href="{{ path('tag_create') }}" class="btn btn-primary">Créer un nouveau tag</a>
+            <h3>Il y a {{ events | length }} événements actuellement</h3>
+            <a href="{{ path('event_create') }}" class="btn btn-primary">Créer un nouvel événement</a>
         </div>
 
         <div class="row">
-            {% for tag in tags %}
+            {% for event in events %}
                 <div class="col-md-6 col-lg-4 mb-4">
-                    <a href="{{ path('tag_show', {id:tag.id}) }}">
+                    <a href="{{ path('event_show', {id:event.id}) }}">
                         <div class="card shadow-sm h-100">
                             <div class="card-body">
-                                <h5 class="card-title">{{ tag.name }}</h5>
+                                <h5 class="card-title">{{ event.title }}</h5>
                             </div>
                         </div>
                     </a>

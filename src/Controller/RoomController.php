@@ -70,6 +70,8 @@ class RoomController extends AbstractController
         if ($form->isSubmitted()) {
             $entityManager->persist($roomUpdate);
             $entityManager->flush();
+
+            return $this->redirectToRoute('rooms');
         }
 
         $formView = $form->createView();

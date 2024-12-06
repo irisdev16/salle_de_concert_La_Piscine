@@ -70,7 +70,10 @@ class CategoryController extends AbstractController
 
         $form->handleRequest($request);
         if($form->isSubmitted()){
+            $entityManager->persist($categoryUpdated);
             $entityManager->flush();
+
+            return $this->redirectToRoute('categories');
         }
         $formView = $form->createView();
         return $this->render('category/update.html.twig', [

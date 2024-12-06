@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block metatitle %}
+    Événement modifié | Super Blog
+{% endblock metatitle %}
+
+{% block main %}
+
+    <section class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <article>
+                <h2> {{ event.title }}</h2>
+                <h2> {{ event.description }}</h2>
+                <h2> Début : {{ event.startTime.format('d/m/Y H:i:s') }}</h2>
+                <h2> Fin : {{ event.endTime.format('d/m/Y H:i:s') }}</h2>
+            </article>
+        </div>
+
+
+        <a href="{{ path('event_update', {id:event.id}) }}" class="btn btn-primary">Modifier</a>
+    </section>
+
+
+{% endblock main %}
