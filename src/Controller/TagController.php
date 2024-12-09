@@ -36,6 +36,7 @@ class TagController extends AbstractController
             $entityManager->persist($tag);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Tag created successfully!');
             return $this->redirectToRoute('tags');
         }
 
@@ -70,6 +71,7 @@ class TagController extends AbstractController
             $entityManager->persist($tagUpdated);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Tag modified successfully!');
             return $this->redirectToRoute('tags');
         }
 

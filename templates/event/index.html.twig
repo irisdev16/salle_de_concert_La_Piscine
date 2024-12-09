@@ -7,7 +7,13 @@
 
     <section class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3>Il y a {{ events | length }} événements actuellement</h3>
+            <h1>
+                Il y a {{ events | length }}
+                    {% if events | length > 1 %} événements
+                        {% else %}événements
+                    {% endif %}
+                actuellement.
+            </h1>
             <a href="{{ path('event_create') }}" class="btn btn-primary">Créer un nouvel événement</a>
         </div>
 

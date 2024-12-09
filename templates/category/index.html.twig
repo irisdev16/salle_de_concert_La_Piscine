@@ -7,7 +7,13 @@
 
 <section class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3>Il y a {{ categories | length }} catégories actuellement</h3>
+        <h1>
+            Il y a {{ categories | length }}
+                {% if categories | length > 1 %} catégories
+                    {% else %}catégorie
+                {% endif %}
+            actuellement.
+        </h1>
         <a href="{{ path('category_create') }}" class="btn btn-primary">Créer une nouvelle catégorie</a>
     </div>
 

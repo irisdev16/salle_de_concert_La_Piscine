@@ -7,7 +7,13 @@
 
     <section class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3>Il y a {{ tags | length }} tags actuellement</h3>
+            <h1>
+                Il y a {{ tags | length }}
+                    {% if tags | length > 1 %} tags
+                        {% else %}tag
+                    {% endif %}
+                actuellement.
+            </h1>
             <a href="{{ path('tag_create') }}" class="btn btn-primary">Créer un nouveau tag</a>
         </div>
 

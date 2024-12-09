@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Room;
 use App\Form\RoomType;
-use App\Repository\EstablishmentRepository;
 use App\Repository\RoomRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,11 +33,30 @@ class RoomController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
+
+            $images= $form->get('images')->getData();
+
+            foreach ($images as $image) {
+                $fileName = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move(
+                    $this->getParameter('uploads_directory'),
+                    $fileName
+                );
+
+                $image = new Image();
+                $image ->setPath($fileName);
+                $image->setRoom($room);
+
+                $entityManager->persist($image);
+            }
+
             $entityManager->persist($room);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Room created successfully!');
             return $this->redirectToRoute('rooms');
         }
+
 
         return $this->render('room/create.html.twig', [
             'formView' => $form->createView(),
@@ -68,9 +87,27 @@ class RoomController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
+
+            $images= $form->get('images')->getData();
+
+            foreach ($images as $image) {
+                $fileName = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move(
+                    $this->getParameter('uploads_directory'),
+                    $fileName
+                );
+
+                $image = new Image();
+                $image ->setPath($fileName);
+                $image->setRoom($roomUpdate);
+
+                $entityManager->persist($image);
+            }
+
             $entityManager->persist($roomUpdate);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Room modified successfully!');
             return $this->redirectToRoute('rooms');
         }
 

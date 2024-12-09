@@ -12,11 +12,17 @@
             <article>
                 <h2> {{ room.name }}</h2>
                 <h2> Capacité : {{ room.capacity }} personnes</h2>
+
+                <h1>Images</h1>
+                {% for image in room.images %}
+                    <img src="{{ asset('assets/images/' ~ image.path)  }}" width="60" alt="">
+                {% endfor %}
             </article>
         </div>
 
 
         <a href="{{ path('room_update', {id:room.id}) }}" class="btn btn-primary">Modifier</a>
+
     </section>
 
 

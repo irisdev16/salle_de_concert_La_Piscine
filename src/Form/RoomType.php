@@ -8,6 +8,7 @@ use App\Entity\Tag;
 use Doctrine\DBAL\Types\IntegerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -37,6 +38,15 @@ class RoomType extends AbstractType
                 'attr'=> ['class' => 'form-control'],
                 'label_attr' => ['class' => 'form-label'],
                 'label' => 'Etablissement',
+            ])
+
+            ->add('images', FileType::class, [
+                'mapped' => false,
+                'multiple' => true,
+                'required' => false,
+                'label' => 'Images',
+                'attr' => ['class' => 'form-control'],
+                'label_attr' => ['class' => 'form-label'],
             ])
 
             ->add('tags', EntityType::class, [
